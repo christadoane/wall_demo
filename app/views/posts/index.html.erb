@@ -1,0 +1,28 @@
+<h1>Welcome, <%= @user.name %></h1>
+
+<form action = "/posts" method = "post">
+	<input type = "hidden" name = "authenticity_token" value = "<%= form_authenticity_token %>">
+	<input type = 'text' name = "post">
+	<input type = 'submit' value = "create post">
+</form>
+
+<% @posts.each do |j| %>
+	<h5><%= j.user.name %></h5>
+	<h3><%= j.post %></h3>
+	<form action = "/posts/<%= j.id %>/delete" method = "post">
+		<input type = "hidden" name = "authenticity_token" value = "<%= form_authenticity_token %>">
+		<input type = 'hidden' name "_method" value = "delete">
+		<input type = 'submit' value = "Delete">
+	</form>
+		<form action = "/comments" method = "post">
+			<input type = "hidden" name = "authenticity_token" value = "<%= form_authenticity_token %>">
+			<input type = "hidden" name = 'dolphin' value = "<%=j.id%>">
+			comment<input type = 'text' name = "comment">
+			<input type = 'submit' value = "create comment">
+		</form>
+		<% j.comments.each do |c| %>
+			<p><%= c.comment %></p>
+			<p><%= c.user.name %></p>
+		<% end %>
+
+<% end %>

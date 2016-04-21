@@ -1,0 +1,8 @@
+register
+<form action = "/users" method = "post">
+	<input type = "hidden" name = "authenticity_token" value = "<%= form_authenticity_token %>">
+	name<input type = 'text' name = 'user[name]'>
+	email<input type = 'email' name = 'user[email]'>
+	password<input type = 'password' name = 'user[password]'>
+	<input type = 'submit' value = 'Create New user'>
+</form>
